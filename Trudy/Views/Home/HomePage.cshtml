@@ -1,0 +1,160 @@
+﻿    
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> مركز تطوير نظم المعلومات الإدارية Assiut MIS Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/HomePage.css" rel="stylesheet">
+    <link href="~/css/Error.css" rel="stylesheet">
+
+
+    <style>
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body id="b">
+    <!-- Success Container -->
+    <div class="success-container" id="successContainer">
+        @if (TempData["Success"] != null)
+        {
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <div class="success-content">
+                    <div class="success-title">Done.</div>
+                    <div class="success-details">@TempData["Success"]</div>
+
+
+                </div>
+                <button class="close-btn" onclick="closeMessage(this)">×</button>
+            </div>
+        }
+    </div>
+
+    <!-- Error Container -->
+    <div class="error-container" id="errorContainer">
+        @if (TempData["Error"] != null)
+        {
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error-content">
+                    <div class="error-title">فشل التسجيل  😕</div>
+                    <div class="error-details">@TempData["Error"]</div>
+                    @if (TempData["Errors"] is IEnumerable<string> errors && errors.Any())
+                    {
+                        <ul>
+
+                            @foreach (var error in errors)
+                            {
+                                <li>@error</li>
+                            }
+                        </ul>
+                    }
+                </div>
+                <button class="close-btn" onclick="closeMessage(this)">×</button>
+            </div>
+        }
+    </div>
+@*     <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="~/Icons/InsDevelopment.jpg">
+        </div>
+        <div class="auth-buttons">
+
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <a class="sign-up btn btn-primary" asp-controller="Auth" asp-action="SignUp">تسجيل مستخدم جديد</a>
+            }
+            <a class="sign-out btn btn-primary" asp-controller="Auth" asp-action="SignOut">تسجيل الخروج</a>
+
+        </div>
+    </header> *@
+
+    <!-- Rectangle Section -->
+    <section class="intro" id="intro">
+        <h1>Welcom to our Incredible system to hack "Trudy"</h1>
+        <h2>If you ara a man !! , Find out needle punture. </h2>
+        <h3>Designed and developed by : <span style="color: blanchedalmond; font-style : italic;">Badr Ahmed - Rania Adel</span></h3>
+    </section>
+
+    <!-- App Icons Section -->
+    <div class="container contner">
+        <div class="app-icons">       
+                <div class="app" data-controller="Account" data-action="ChangePassword"> <img src="~/icons/programmer.png" alt="التطبيق 2"> <span>Change password</span></div>
+            <div class="app" data-controller="Account" data-action="Reset"> <img src="~/icons/programmer.png" alt="التطبيق 2"> <span>Reset password</span></div>
+            <div class="app" data-controller="Account" data-action="LogOut"> <img src="~/icons/programmer.png" alt="التطبيق 4"> <span>Log out</span> </div>
+       
+        </div>
+
+        <div class="app-icons">
+            <div class="app" data-controller="Rsa" data-action="Encrypt"> <img src="~/icons/programmer2.png " alt="التطبيق 3"> <span>Encrypt File by RSA</span> </div>
+            <div class="app" data-controller="Rsa" data-action="MyEncryptedFiles"> <img src="~/icons/programmer2.png" alt="التطبيق 3"> <span>My RSA files</span> </div>
+
+            <div class="app" data-controller="TripleDes" data-action="Encrypt"> <img src="~/icons/programmer2.png" alt="التطبيق 3"> <span>Encrypt File by TDES</span> </div>
+            <div class="app" data-controller="TripleDes" data-action="MyEncryptedFiles"> <img src="~/icons/programmer2.png" alt="التطبيق 3"> <span>My TDES files</span> </div>
+
+
+        </div>
+@*         <div class="app-icons">
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <div class="app" data-controller="MaritalStatuses"> <img src="~/icons/wedding-rings (1).png" alt="التطبيق 9"> <span>الحالات الإجتماعيه</span> </div>
+                <div class="app" data-controller="Governorates"> <img src="~/icons/skyscraper.png" alt="التطبيق 7"> <span>المحافظات</span> </div>
+                <div class="app" data-controller="Qualifications"> <img src="~/icons/graduation-hat.png" alt="التطبيق 9"> <span>المؤهلات</span> </div>
+                <div class="app" data-controller="QualificationLevels"> <img src="~/icons/phd.png" alt="التطبيق 10"> <span>مستويات المؤهلات</span> </div>
+                <div class="app" data-controller="JobGroups"> <img src="~/icons/man-working-on-a-laptop-from-side-view.png" alt="التطبيق 9"> <span>المجموعات الوظيفيه</span> </div>
+                <div class="app" data-controller="QualitativeGroups"> <img src="~/icons/teamwork.png" alt="التطبيق 10"> <span>المجموعات النوعيه</span> </div>
+                <div class="app" data-controller="Grades"> <img src="~/icons/loan (1).png" alt="التطبيق 8"> <span>الدرجات الماليه</span> </div>
+
+            }
+
+            <div class="app" data-controller="Home" data-action="SystemDeveloper"> <img src="~/icons/programmer2.png" alt="التطبيق 1"> <span>عن مطور السيستم ! </span> </div>
+
+        </div> *@
+    
+    </div>
+@* 
+    <footer>
+        <p>جميع الحقوق محفوظة لمركز تطوير نظم المعلومات الادارية ٢٠٢٥</p>
+        <p>Designed and developed by Eng. Badr Albadry</p>
+    </footer> *@
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".app").forEach(app => {
+                app.addEventListener("click", function () {
+                    var controller = this.getAttribute("data-controller");
+                    var action = this.getAttribute("data-action");
+
+                    if (controller) {
+                        // Default to 'Index' if no action is provided
+                        action = action || "Index";
+
+                        // Use Razor to generate the URL dynamically
+                        var actionUrl = `@Url.Action("__ACTION__", "__CONTROLLER__")`
+                            .replace("__ACTION__", action)
+                            .replace("__CONTROLLER__", controller);
+
+                        window.location.href = actionUrl;
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="~/js/CloseErrorMessage.js"></script>
+</body>
+
+</html>

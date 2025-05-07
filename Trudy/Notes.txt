@@ -1,0 +1,13 @@
+﻿In RSA encryption, the padding scheme is used to add randomness and structure
+to the message before encryption, making it more secure
+
+Why use padding:
+Ensures secure encryption even if the same message is encrypted multiple times.
+
+Prevents attackers from guessing encrypted values or replaying them.
+
+If you encrypt with PKCS1, you must decrypt using the same PKCS1 padding.
+
+
+
+////////////////////////////////////////////////

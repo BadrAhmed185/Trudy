@@ -1,0 +1,42 @@
+﻿@model Trudy.Models.ViewModels.EncryptTextViewModel
+
+@{
+    ViewData["Title"] = "EncryptFile";
+}
+
+<h1 class="caption-top" style="color : brown">Encrypt a file using the @TempData["Algorithm"] Algorithm</h1>
+
+<hr />
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+                <form asp-controller="@TempData["Controller"]" asp-action="Encrypt">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              @*   <h5 style="color : brown"> Enter the file name and the Text you wish to encrypt</h5> *@
+
+                <div class="mb-3">
+                    <label asp-for="PlainText" class="control-label"></label>
+                    <input asp-for="PlainText" class="form-control" />
+                    <span asp-validation-for="PlainText" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="FileName" class="control-label"></label>
+                    <input asp-for="FileName" class="form-control" />
+                    <span asp-validation-for="FileName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Create" class="btn btn-dark w-100" />
+                </div>
+            </form>
+    </div>
+</div>
+            <div>
+        <a asp-asp-controller="@TempData["Controller"]" asp-action="MyEncryptedFiles" class="btn btn-outline-dark w-30">Show Files List</a>
+            </div>
+     </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

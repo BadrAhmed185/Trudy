@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Trudy.Models.ViewModels.UserEncryptedFileViewModel>
+
+@{
+    ViewData["Title"] = "My Encrypted Files";
+}
+
+@if (TempData["Name"] != null)
+{
+    <h1 class="caption-top" style="color : brown">Welcome: @TempData["Name"]  🥰</h1>
+    <br>
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info">@TempData["Info"]</div>
+}
+
+@if (!Model.Any())
+{
+    <p>No encrypted files found.</p>
+}
+else
+{
+    <a style="margin-bottom : 20px" asp-asp-controller="@TempData["Controller"]" asp-action="Encrypt" class="btn btn-sm btn-dark">Encrypt new file</a>
+   
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>File Name</th>
+                <th>Created Date</th>
+                <th>Encryption Method</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model)
+            {
+                <tr>
+                    <td>@file.FileName</td>
+                    <td>@file.CreatedDate.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@file.EncryptionMethod</td>
+                    <td>
+                        <a asp-controller="@TempData["Controller"]" asp-action="Decrypt" asp-route-fileName="@file.FileName" class="btn btn-sm btn-success">Decrypt</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
